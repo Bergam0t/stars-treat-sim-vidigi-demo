@@ -1,4 +1,4 @@
-name: star_treat_sim
+name: stars_treat_sim
 channels:
   - conda-forge
 dependencies:
