@@ -24,11 +24,76 @@ The materials and methods in this repository support work towards developing the
 [![ORCID: Harper](https://img.shields.io/badge/ORCID-0000--0001--5274--5037-brightgreen)](https://orcid.org/0000-0001-5274-5037)
 [![ORCID: Monks](https://img.shields.io/badge/ORCID-0000--0003--2631--4481-brightgreen)](https://orcid.org/0000-0003-2631-4481)
 
-## Online Notebooks via Binder
+## Funding
+
+This code is part of independent research supported by the National Institute for Health Research Applied Research Collaboration South West Peninsula. The views expressed in this publication are those of the author(s) and not necessarily those of the National Institute for Health Research or the Department of Health and Social Care.
+
+## Instructions to run the model
+
+### Online Notebooks via Binder
 
 The python code for the model has been setup to run online in Jupyter notebooks via binder [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pythonhealthdatascience/stars-treat-sim/HEAD)
 
-> Binder is a free service.  If it has not been used in a while Binder will need to re-containerise the code repository, and push to binderhub. This will take several minutes. After that the online environment will be quick to load.
+> mybinder.org is a free tier service.  If it has not been used in a while Binder will need to re-containerise the code repository, and push to binderhub. This will take several minutes. After that the online environment will be quick to load.
+
+### To download code and run locally
+
+#### Downloading the code
+
+Either clone the repository using git or click on the green "code" button and select "Download Zip".
+
+```bash
+git clone https://github.com/pythonhealthdatascience/stars-treat-sim
+```
+
+#### Installing dependencies
+
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/)
+
+All dependencies can be found in [`binder/environment.yml`]() and are pulled from conda-forge.  To run the code locally, we recommend install [mini-conda](https://docs.conda.io/en/latest/miniconda.html); navigating your terminal (or cmd prompt) to the directory containing the repo and issuing the following command:
+
+> `conda env create -f binder/environment.yml`
+
+Activate the conda environment using the following command
+
+> `conda activate stars_treat_sim``
+
+#### Running the model
+
+To run 50 multiple replications of across a number of example experiments use the following code
+
+
+```python
+from treat_sim.model import (get_scenarios, run_scenario_analysis,
+                             scenario_summary_frame, 
+                             DEFAULT_RESULTS_COLLECTION_PERIOD)
+
+if __name__ == '__main__':
+
+    results = run_scenario_analysis(get_scenarios(), 
+                                    DEFAULT_RESULTS_COLLECTION_PERIOD,
+                                    n_reps=50)
+
+    results_summary = scenario_summary_frame(results)
+    print(results_summary)
+
+```
+
+Alternative you can design and execute individual experiments by creating a `Scenario` object
+
+```python
+from treat_sim.model import Scenario, multiple_replications
+
+if __name__ == '__main__':
+
+    # use all default parameter values
+    base_case = Scenario()
+
+    results = multiple_replications(base_case).describe().round(2).T
+    print(results)
+
+```
+
 
 ## Repo overview
 
@@ -36,8 +101,6 @@ The python code for the model has been setup to run online in Jupyter notebooks 
 .
 ├── binder
 │   └── environment.yml
-├── data
-│   └── ed_arrivals.csv
 ├── LICENSE
 ├── MANIFEST.in
 ├── notebooks
@@ -52,3 +115,15 @@ The python code for the model has been setup to run online in Jupyter notebooks 
     ├── __init__.py
     └── model.py
 ```
+
+* `binder` - contains the environment.yml file (sim) and all dependencies managed via conda
+* `data` - directory containing data files used by analysis notebooks. 
+* `LICENSE` - details of the MIT permissive license of this work.
+* `notebooks` - contains a notebook to run the model and provides basic enhanced model documentation.
+* `main.py` - an example simpy model to use to test the virtual environment 
+* `README` - what you are reading now!
+* `treat_sim` - contains a packaged version of the model.
+
+
+
+
