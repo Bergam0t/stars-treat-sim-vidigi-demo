@@ -52,11 +52,15 @@ git clone https://github.com/pythonhealthdatascience/stars-treat-sim
 
 All dependencies can be found in [`binder/environment.yml`]() and are pulled from conda-forge.  To run the code locally, we recommend install [mini-conda](https://docs.conda.io/en/latest/miniconda.html); navigating your terminal (or cmd prompt) to the directory containing the repo and issuing the following command:
 
-> `conda env create -f binder/environment.yml`
+```
+conda env create -f binder/environment.yml
+```
 
 Activate the conda environment using the following command
 
-> `conda activate stars_treat_sim``
+```
+conda activate stars_treat_sim
+```
 
 #### Running the model
 
