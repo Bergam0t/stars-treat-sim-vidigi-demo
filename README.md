@@ -1,7 +1,7 @@
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pythonhealthdatascience/stars-treat-sim/HEAD)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/release/python-360+/)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6497477.svg)](https://doi.org/10.5281/zenodo.6497477)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10026327.svg)](https://doi.org/10.5281/zenodo.10026327)
 [![PyPI version fury.io](https://badge.fury.io/py/treat-sim.svg)](https://pypi.org/project/treat-sim/)
 
 [<img src="https://img.shields.io/static/v1?label=dockerhub&message=images&color=important?style=for-the-badge&logo=docker">](https://hub.docker.com/r/tommonks01/treat_sim)
@@ -131,5 +131,21 @@ if __name__ == '__main__':
 * `treat_sim` - contains a packaged version of the model.
 
 
+## Citation
 
+If you use the materials within this repository we would appreciate a citation.
+
+```bibtex
+@software{monks_2023_10026327,
+  author       = {Monks, Thomas and
+                  Harper, Alison},
+  title        = {{Towards Sharing Tools, and Artifacts, for Reusable 
+                   Simulation: a minimal model examplar}},
+  month        = oct,
+  year         = 2023,
+  publisher    = {Zenodo},
+  version      = {v1.0.0},
+  url 	       = {https://zenodo.org/records/10026327}
+}
+```
 
