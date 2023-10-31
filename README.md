@@ -7,7 +7,7 @@
 [<img src="https://img.shields.io/static/v1?label=dockerhub&message=images&color=important?style=for-the-badge&logo=docker">](https://hub.docker.com/r/tommonks01/treat_sim)
 
 
-# Towards Sharing Tools, and Artifacts, for Reusable Simulation: a minimal model examplar
+# Towards Sharing Tools, and Artifacts, for Reusable Simulation: a minimal model example
 
 ## Overview
 
