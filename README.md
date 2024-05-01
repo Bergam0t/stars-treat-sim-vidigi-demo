@@ -1,7 +1,7 @@
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pythonhealthdatascience/stars-treat-sim/HEAD)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/release/python-360+/)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10026327.svg)](https://doi.org/10.5281/zenodo.10026327)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/release/python-380+/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11098944.svg)](https://doi.org/10.5281/zenodo.11098944)
 [![PyPI version fury.io](https://badge.fury.io/py/treat-sim.svg)](https://pypi.org/project/treat-sim/)
 
 [<img src="https://img.shields.io/static/v1?label=dockerhub&message=images&color=important?style=for-the-badge&logo=docker">](https://hub.docker.com/r/tommonks01/treat_sim)
@@ -50,7 +50,7 @@ git clone https://github.com/pythonhealthdatascience/stars-treat-sim
 
 #### Installing dependencies
 
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/release/python-390/)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/release/python-380/)
 
 All dependencies can be found in [`binder/environment.yml`]() and are pulled from conda-forge.  To run the code locally, we recommend install [mini-conda](https://docs.conda.io/en/latest/miniconda.html); navigating your terminal (or cmd prompt) to the directory containing the repo and issuing the following command:
 
@@ -135,17 +135,22 @@ if __name__ == '__main__':
 
 If you use the materials within this repository we would appreciate a citation.
 
+```
+Monks, T., & Harper, A. (2024). Towards Sharing Tools, and Artifacts, for Reusable Simulation: a minimal model example (v1.1.1). Zenodo. https://doi.org/10.5281/zenodo.11098944
+```
+
 ```bibtex
-@software{monks_2023_10026327,
+@software{stars_treat_sim,
   author       = {Monks, Thomas and
                   Harper, Alison},
   title        = {{Towards Sharing Tools, and Artifacts, for Reusable 
-                   Simulation: a minimal model examplar}},
-  month        = oct,
-  year         = 2023,
+                   Simulation: a minimal model example}},
+  month        = may,
+  year         = 2024,
   publisher    = {Zenodo},
-  version      = {v1.0.0},
-  url 	       = {https://zenodo.org/records/10026327}
+  version      = {v1.1.1},
+  doi          = {10.5281/zenodo.11098944},
+  url          = {https://doi.org/10.5281/zenodo.11098944}
 }
 ```
 
