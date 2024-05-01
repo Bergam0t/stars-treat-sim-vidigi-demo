@@ -300,13 +300,13 @@ class Scenario:
         '''
         Create the distributions used by the model and initialise 
         the random seeds of each.
-        '''
+        '''       
         # MODIFICATION. Better method for producing n non-overlapping streams
         seed_sequence = np.random.SeedSequence(self.random_number_set)
     
         # Generate n high quality child seeds
         self.seeds = seed_sequence.spawn(N_STREAMS)
-
+        
         # create distributions
         
         # Triage duration
@@ -334,7 +334,7 @@ class Scenario:
         
         # treatment of trauma patients
         self.treat_dist = Lognormal(self.trauma_treat_mean, 
-                                    np.sqrt(self.non_trauma_treat_var),
+                                    np.sqrt(self.trauma_treat_var),
                                     random_seed=self.seeds[5])
         
         # probability of non-trauma patient requiring treatment
@@ -465,7 +465,7 @@ class TraumaPathway:
                   f'{self.env.now:.3f}')
             
             # sample treatment duration.
-            self.treat_duration = self.args.trauma_dist.sample()
+            self.treat_duration = self.args.treat_dist.sample()
             yield self.env.timeout(self.treat_duration)
             
             self.treatment_complete()
