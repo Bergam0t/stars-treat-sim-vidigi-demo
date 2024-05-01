@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v1.1.1
+
+* PATCH: Trauma patient treatment fixed to use correct distribution and parameters.
+
 ## v1.1.0
 
 ### Updates and new features
