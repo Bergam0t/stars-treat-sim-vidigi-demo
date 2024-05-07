@@ -71,8 +71,8 @@ DEFAULT_PROB_TRAUMA = 0.12
 # The data for arrival rates varies between clinic opening at 6am and closure at
 # 12am.
 
-NSPP_PATH = 'https://raw.githubusercontent.com/TomMonks/' \
- + 'open-science-for-sim/main/src/notebooks/01_foss_sim/data/ed_arrivals.csv'
+NSPP_PATH = 'https://raw.githubusercontent.com/pythonhealthdatascience/' \
+ + 'stars-treat-sim/main/treat_sim/data/ed_arrivals.csv'
 
 # Resource counts
 
