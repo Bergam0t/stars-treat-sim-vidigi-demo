@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Consistent identifier (represents all versions, resolves to latest): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10026326.svg)](https://doi.org/10.5281/zenodo.10026326)
 
+### [Unreleased]
+
+### Changed
+
+* `CHANGES.md` uses Keep a Changelog formatting, and includes release links, DOIs, and first release.
+* `CITATION.cff` includes references, new author, and spelling/grammar fixes.
+* `README.md` updated repo overview and spelling/grammar fixes
+* Full author list in `__init__`
+
+### Fixed
+
+* Model uses data from this repository (rather than external)
+
+### Removed
+
+* Duplicate `ed_arrivals.csv`
+
 ## [v1.1.1](https://github.com/pythonhealthdatascience/stars-treat-sim/releases/tag/v1.1.1) - 2024-05-01 - [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11098944.svg)](https://doi.org/10.5281/zenodo.11098944)
 
 ### Fixed
