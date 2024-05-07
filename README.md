@@ -11,14 +11,14 @@
 
 ## Overview
 
-The materials and methods in this repository support work towards developing the S.T.A.R.S healthcare framework (**S**haring **T**ools and **A**rtifacts for **R**euable **S**imulations in healthcare).  The code and written materials here demonstrate the application of S.T.A.R.S' version 1 to sharing a `simpy` discrete-event simuilation model and associated research artifacts.  
+The materials and methods in this repository support work towards developing the S.T.A.R.S healthcare framework (**S**haring **T**ools and **A**rtifacts for **R**eusable **S**imulations in healthcare).  The code and written materials here demonstrate the application of S.T.A.R.S' version 1 to sharing a `SimPy` discrete-event simulation model and associated research artifacts.  
 
 * All artifacts in this repository are linked to study researchers via ORCIDs;
 * Model code is made available under an MIT license;
-* Python dependencies are managed through `conda`;`
+* Python dependencies are managed through `conda`;
 * Documentation of the model is enhanced using a Jupyter notebook.
 * The python code itself can be viewed and executed in Jupyter notebooks via [Binder](https://mybinder.org); 
-* The materials are deposited and made citatable using Zenodo;
+* The materials are deposited and made citable using Zenodo;
 * The model is sharable with other researchers and the NHS without the need to install software.
 
 ## Author ORCIDs
@@ -36,7 +36,7 @@ This code is part of independent research supported by the National Institute fo
 
 The python code for the model has been setup to run online in Jupyter notebooks via binder [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pythonhealthdatascience/stars-treat-sim/HEAD)
 
-> mybinder.org is a free tier service.  If it has not been used in a while Binder will need to re-containerise the code repository, and push to binderhub. This will take several minutes. After that the online environment will be quick to load.
+> mybinder.org is a free tier service.  If it has not been used in a while Binder will need to re-containerise the code repository, and push to BinderHub. This will take several minutes. After that the online environment will be quick to load.
 
 ### To download code and run locally
 
@@ -58,7 +58,7 @@ All dependencies can be found in [`binder/environment.yml`]() and are pulled fro
 conda env create -f binder/environment.yml
 ```
 
-Activate the conda environment using the following command
+Activate the conda environment using the following command:
 
 ```
 conda activate stars_treat_sim
@@ -66,8 +66,7 @@ conda activate stars_treat_sim
 
 #### Running the model
 
-To run 50 multiple replications of across a number of example experiments use the following code
-
+To run 50 multiple replications across a number of example experiments, use the following code:
 
 ```python
 from treat_sim.model import (get_scenarios, run_scenario_analysis,
@@ -85,7 +84,7 @@ if __name__ == '__main__':
 
 ```
 
-Alternative you can design and execute individual experiments by creating a `Scenario` object
+Alternative you can design and execute individual experiments by creating a `Scenario` object:
 
 ```python
 from treat_sim.model import Scenario, multiple_replications
@@ -107,6 +106,8 @@ if __name__ == '__main__':
 .
 ├── binder
 │   └── environment.yml
+├── CHANGES.md
+├── CITATION.cff
 ├── LICENSE
 ├── MANIFEST.in
 ├── notebooks
@@ -122,14 +123,20 @@ if __name__ == '__main__':
     └── model.py
 ```
 
-* `binder` - contains the environment.yml file (sim) and all dependencies managed via conda
-* `data` - directory containing data files used by analysis notebooks. 
+* `binder/` - contains the environment.yml file (sim) and all dependencies managed via conda.
+* `CHANGES.md` - changelog with record of notable changes to project between versions.
+* `CITATION.cff` - citation information for the package.
 * `LICENSE` - details of the MIT permissive license of this work.
-* `notebooks` - contains a notebook to run the model and provides basic enhanced model documentation.
-* `main.py` - an example simpy model to use to test the virtual environment 
-* `README` - what you are reading now!
-* `treat_sim` - contains a packaged version of the model.
-
+* `MANIFEST.in` - files to include in the package.
+* `notebooks/` - contains a notebook to run the model and provides basic enhanced model documentation.
+* `README.md` - what you are reading now!
+* `requirements.txt` - list of packages required.
+* `setup.py` - used to build and distribute package.
+* `treat_sim/` - contains packaged version of the model.
+    * `data/` - directory containing data file used by package.
+    * `distributions.py` - distribution classes.
+    * `__init__.py` - required as part of package - contains author and version.
+    * `model.py` - example SimPy model.
 
 ## Citation
 
@@ -145,7 +152,7 @@ Monks, T., & Harper, A. (2024). Towards Sharing Tools, and Artifacts, for Reusab
                   Harper, Alison},
   title        = {{Towards Sharing Tools, and Artifacts, for Reusable 
                    Simulation: a minimal model example}},
-  month        = may,
+  month        = May,
   year         = 2024,
   publisher    = {Zenodo},
   version      = {v1.1.1},
@@ -153,4 +160,3 @@ Monks, T., & Harper, A. (2024). Towards Sharing Tools, and Artifacts, for Reusab
   url          = {https://doi.org/10.5281/zenodo.11098944}
 }
 ```
-
