@@ -1,7 +1,7 @@
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pythonhealthdatascience/stars-treat-sim/HEAD)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/release/python-380+/)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11098944.svg)](https://doi.org/10.5281/zenodo.11098944)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10026326.svg)](https://doi.org/10.5281/zenodo.10026326)
 [![PyPI version fury.io](https://badge.fury.io/py/treat-sim.svg)](https://pypi.org/project/treat-sim/)
 
 [<img src="https://img.shields.io/static/v1?label=dockerhub&message=images&color=important?style=for-the-badge&logo=docker">](https://hub.docker.com/r/tommonks01/treat_sim)
@@ -99,7 +99,6 @@ if __name__ == '__main__':
 
 ```
 
-
 ## Repo overview
 
 ```
@@ -123,14 +122,14 @@ if __name__ == '__main__':
     └── model.py
 ```
 
-* `binder/` - contains the environment.yml file (sim) and all dependencies managed via conda.
+* `binder/` - contains the environment.yml file (sim) and all dependencies managed via conda, used to set-up the notebooks on Binder.
 * `CHANGES.md` - changelog with record of notable changes to project between versions.
 * `CITATION.cff` - citation information for the package.
 * `LICENSE` - details of the MIT permissive license of this work.
 * `MANIFEST.in` - files to include in the package.
 * `notebooks/` - contains a notebook to run the model and provides basic enhanced model documentation.
 * `README.md` - what you are reading now!
-* `requirements.txt` - list of packages required.
+* `requirements.txt` - list of packages and minimum versions required.
 * `setup.py` - used to build and distribute package.
 * `treat_sim/` - contains packaged version of the model.
     * `data/` - directory containing data file used by package.
@@ -143,13 +142,12 @@ if __name__ == '__main__':
 If you use the materials within this repository we would appreciate a citation.
 
 ```
-Monks, T., & Harper, A. (2024). Towards Sharing Tools, and Artifacts, for Reusable Simulation: a minimal model example (v1.1.1). Zenodo. https://doi.org/10.5281/zenodo.11098944
+Monks, T., Harper, A., & Heather, A. (2024). Towards Sharing Tools, and Artifacts, for Reusable Simulation: a minimal model example (v1.1.1). Zenodo. https://doi.org/10.5281/zenodo.11098944
 ```
 
 ```bibtex
 @software{stars_treat_sim,
-  author       = {Monks, Thomas and
-                  Harper, Alison},
+  author       = {Thomas Monks, Alison Harper and Amy Heather},
   title        = {{Towards Sharing Tools, and Artifacts, for Reusable 
                    Simulation: a minimal model example}},
   month        = May,
