@@ -4,7 +4,7 @@
 cff-version: 1.2.0
 title: >-
   Towards Sharing Tools, and Artifacts, for Reusable
-  Simulation: a minimal model examplar
+  Simulation: a minimal model example
 message: >-
   If you use this software, please cite it using the
   metadata from this file.
@@ -18,20 +18,27 @@ authors:
     family-names: Harper
     affiliation: University of Exeter
     orcid: 'https://orcid.org/0000-0001-5274-5037'
+  - given-names: Amy
+    family-names: Heather
+    affiliation: University of Exeter
+    orcid: 'https://orcid.org/0000-0002-6596-3479'
 repository-code: 'https://github.com/pythonhealthdatascience/stars-treat-sim'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.10026326
 abstract: >
 
   The materials and methods in this repository support work
   towards developing the S.T.A.R.S healthcare framework
-  (Sharing Tools and Artifacts for Reuable Simulations in
+  (Sharing Tools and Artifacts for Reusable Simulations in
   healthcare).  The code and written materials re
   demonstrate the application of S.T.A.R.S' version 1 to
-  sharing a `simpy` discrete-event simulation model and
+  sharing a `SimPy` discrete-event simulation model and
   associated research artifacts.  
 keywords:
   - Free and Open Source Software
   - Model Reuse
   - Discrete-event simulation
   - Open Science
-  - Simpy
+  - SimPy
 license: MIT
