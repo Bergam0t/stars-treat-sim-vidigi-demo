@@ -15,14 +15,14 @@ On arrival, all patients quickly sign-in and are triaged.
 The health clinic expects two types of patient arrivals: 
 
 **Trauma arrivals:**
-patients with severe illness and trauma that must first be stablised in a 
+patients with severe illness and trauma that must first be stabilised in a 
 trauma room. These patients then undergo treatment in a cubicle before being 
 discharged.
 
 **Non-trauma arrivals**
 patients with minor illness and no trauma go through registration and 
 examination activities. A proportion of non-trauma patients require treatment
-in a cubicle before being dicharged. 
+in a cubicle before being discharged. 
 
 In this model treatment of trauma and non-trauma patients is modelled seperately 
 '''
@@ -32,7 +32,8 @@ import pandas as pd
 import itertools
 import simpy
 
-from treat_sim.distributions import (Exponential, Normal, Uniform, Bernoulli, Lognormal)
+from treat_sim.distributions import (
+    Exponential, Normal, Uniform, Bernoulli, Lognormal)
 
 # Constants and defaults for modelling **as-is**
 
@@ -203,7 +204,7 @@ class Scenario:
             The number of examination rooms
             
         n_trauma: int
-            The number of trauma bays for stablisation
+            The number of trauma bays for stabilisation
             
         n_cubicles_1: int
             The number of non-trauma treatment cubicles
@@ -276,7 +277,7 @@ class Scenario:
         Parameters:
         ----------
         random_number_set: int
-            Used to control the set of psuedo random numbers
+            Used to control the set of pseudo random numbers
             used by the distributions in the simulation.
         '''
         self.random_number_set = random_number_set
@@ -514,7 +515,7 @@ class NonTraumaPathway(object):
         identifier: int
             a numeric identifier for the patient.
             
-        env: simpy.Environment
+        env: SimPy.Environment
             the simulation environment
             
         args: Scenario
@@ -649,7 +650,7 @@ class TreatmentCentreModel:
 
     The main class that a user interacts with to run the model is 
     `TreatmentCentreModel`.  This implements a `.run()` method, contains a simple
-    algorithm for the non-stationary poission process for patients arrivals and 
+    algorithm for the non-stationary Poisson process for patients arrivals and 
     inits instances of `TraumaPathway` or `NonTraumaPathway` depending on the 
     arrival type.    
 
@@ -729,7 +730,7 @@ class TreatmentCentreModel:
         # setup the arrival generator process
         self.env.process(self.arrivals_generator())
         
-        # store rc perio
+        # store rc period
         self.rc_period = results_collection_period
         
         # run
@@ -752,7 +753,7 @@ class TreatmentCentreModel:
             t = int(self.env.now // 60) % self.args.arrivals.shape[0]
             lambda_t = self.args.arrivals['arrival_rate'].iloc[t]
 
-            #set to a large number so that at least 1 sample taken!
+            # set to a large number so that at least 1 sample taken!
             u = np.Inf
             
             interarrival_time = 0.0
@@ -856,7 +857,7 @@ class SimulationSummary:
                                              self.args.n_trauma, 
                                              self.model.trauma_patients)
         
-        # mean waiting time for treatment (rauma) 
+        # mean waiting time for treatment (trauma) 
         mean_treat_wait2 = self.get_mean_metric('wait_treat', 
                                                 self.model.trauma_patients)
         
@@ -979,7 +980,7 @@ def single_run(scenario, rc_period=DEFAULT_RESULTS_COLLECTION_PERIOD,
     -----------
     
     scenario: Scenario object
-        The scenario/paramaters to run
+        The scenario/parameters to run
         
     rc_period: int
         The length of the simulation run that collects results
@@ -1019,7 +1020,7 @@ def multiple_replications(scenario, rc_period=DEFAULT_RESULTS_COLLECTION_PERIOD,
     Params:
     ------
     scenario: Scenario
-        Parameters/arguments to configurethe model
+        Parameters/arguments to configure the model
     
     rc_period: float, optional (default=DEFAULT_RESULTS_COLLECTION_PERIOD)
         results collection period.  
