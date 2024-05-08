@@ -1,2 +1,2 @@
-__author__ = 'T.Monks'
-__version__ = '1.1.1'
+__author__ = 'Thomas Monks, Alison Harper and Amy Heather'
+__version__ = '1.2.0'
