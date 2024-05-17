@@ -33,6 +33,14 @@ This code is part of independent research supported by the National Institute fo
 
 ## Instructions to run the model
 
+### Install from PyPI
+
+If you do not wish to you the code or would like to use the model as part of your own work you can install the model as a python package.
+
+```bash
+pip install treat-sim
+```
+
 ### Online Notebooks via Binder
 
 The python code for the model has been setup to run online in Jupyter notebooks via binder [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pythonhealthdatascience/stars-treat-sim/HEAD)
@@ -109,12 +117,10 @@ if __name__ == '__main__':
 ├── CHANGES.md
 ├── CITATION.cff
 ├── LICENSE
-├── MANIFEST.in
 ├── notebooks
 │   └── test_package.ipynb
+├── pyproject.toml
 ├── README.md
-├── requirements.txt
-├── setup.py
 └── treat_sim
     ├── data
     │   └── ed_arrivals.csv
@@ -127,11 +133,9 @@ if __name__ == '__main__':
 * `CHANGES.md` - changelog with record of notable changes to project between versions.
 * `CITATION.cff` - citation information for the package.
 * `LICENSE` - details of the MIT permissive license of this work.
-* `MANIFEST.in` - files to include in the package.
 * `notebooks/` - contains a notebook to run the model and provides basic enhanced model documentation.
+* `pyproject.toml` - used to build and distribute python package inc. managing a list of package dependencies.
 * `README.md` - what you are reading now!
-* `requirements.txt` - list of packages and minimum versions required.
-* `setup.py` - used to build and distribute package.
 * `treat_sim/` - contains packaged version of the model.
     * `data/` - directory containing data file used by package.
     * `distributions.py` - distribution classes.
