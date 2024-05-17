@@ -49,6 +49,7 @@ DEFAULT_REG_VAR= 2.0
 # examination parameters
 DEFAULT_EXAM_MEAN = 16.0
 DEFAULT_EXAM_VAR = 3.0
+DEFAULT_EXAM_MIN = 0.5
 
 # trauma/stabilisation
 DEFAULT_TRAUMA_MEAN = 90.0
@@ -178,6 +179,7 @@ class Scenario:
                  reg_var=DEFAULT_REG_VAR,
                  exam_mean=DEFAULT_EXAM_MEAN,
                  exam_var=DEFAULT_EXAM_VAR,
+                 exam_min=DEFAULT_EXAM_MIN,
                  trauma_mean=DEFAULT_TRAUMA_MEAN,
                  trauma_treat_mean=DEFAULT_TRAUMA_TREAT_MEAN,
                  trauma_treat_var=DEFAULT_TRAUMA_TREAT_VAR,
@@ -226,6 +228,9 @@ class Scenario:
             
         exam_var: float
             Variance of the examination distribution (Normal)
+
+        exam_min: float
+            The minimum value that an examination can take (Truncated Normal)
             
         trauma_mean: float
             Mean of the trauma stabilisation distribution (Exponential)
@@ -257,6 +262,7 @@ class Scenario:
         self.reg_var = reg_var
         self.exam_mean= exam_mean
         self.exam_var = exam_var
+        self.exam_min = exam_min
         self.trauma_mean = trauma_mean
         self.trauma_treat_mean = trauma_treat_mean
         self.trauma_treat_var = trauma_treat_var
@@ -322,6 +328,7 @@ class Scenario:
         # Evaluation (non-trauma only)
         self.exam_dist = Normal(self.exam_mean,
                                 np.sqrt(self.exam_var),
+                                minimum=self.exam_min,
                                 random_seed=self.seeds[2])
         
         # Trauma/stablisation duration (trauma only)
