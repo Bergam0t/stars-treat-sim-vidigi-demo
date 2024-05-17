@@ -7,7 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Consistent identifier (represents all versions, resolves to latest): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10026326.svg)](https://doi.org/10.5281/zenodo.10026326)
 
-## [v1.2.0]() - 2024-05-08
+## [v2.0.0]() - 2024-05-17
+
+### Changed
+
+* Mitgrated package build to `pyproject.toml` and `hatch`. 
+* Updated local conda virtual environment to python 3.10.x 
+* Tested model in python 3.11 and 3.12 and added to supported versions.
+
+### Removed
+
+* Removed redundant `setup.py`, `requirements.txt`, `MANIFEST.in`
+
+
+## [v1.2.0](https://github.com/pythonhealthdatascience/stars-treat-sim/releases/tag/v1.2.0) - 2024-05-08 - [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11146209.svg)](https://doi.org/10.5281/zenodo.11146209)
 
 ### Changed
 
