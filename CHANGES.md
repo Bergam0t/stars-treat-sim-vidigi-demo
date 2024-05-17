@@ -11,6 +11,7 @@ Consistent identifier (represents all versions, resolves to latest): [![DOI](htt
 
 ### Changed
 
+* MODEL: Examination distribution modified to truncated normal distribution (minimum 0.5)
 * Mitgrated package build to `pyproject.toml` and `hatch`. 
 * Updated local conda virtual environment to python 3.10.x 
 * Tested model in python 3.11 and 3.12 and added to supported versions.
