@@ -139,8 +139,10 @@ class Normal:
     '''
     Convenience class for the normal distribution.
     packages up distribution parameters, seed and random generator.
+
+    Use the minimum parameter to truncate the distribution
     '''
-    def __init__(self, mean, sigma, random_seed=None):
+    def __init__(self, mean, sigma, minimum=None, random_seed=None):
         '''
         Constructor
         
@@ -159,6 +161,7 @@ class Normal:
         self.rng = np.random.default_rng(seed=random_seed)
         self.mean = mean
         self.sigma = sigma
+        self.minimum = minimum
         
     def sample(self, size=None):
         '''
@@ -170,7 +173,17 @@ class Normal:
             the number of samples to return.  If size=None then a single
             sample is returned.
         '''
-        return self.rng.normal(self.mean, self.sigma, size=size)
+        samples = self.rng.normal(self.mean, self.sigma, size=size)
+
+        if self.minimum is None:
+            return samples
+        elif size is None:
+            return max(self.minimum, samples)
+        else:
+            # index of samples with negative value
+            neg_idx = np.where(samples < 0)[0]
+            samples[neg_idx] = self.minimum
+            return samples
 
     
 class Uniform():
