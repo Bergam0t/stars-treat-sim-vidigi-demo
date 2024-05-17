@@ -2,14 +2,15 @@ name: stars_treat_sim
 channels:
   - conda-forge
 dependencies:
-  - joblib=0.15.1
-  - matplotlib=3.3.4
-  - numpy=1.19.2
-  - pandas=1.2.3
-  - pip=21.0.1
-  - python=3.8.12
-  - scipy=1.6.1
-  - simpy=4.0.2
+  - hatch
+  - joblib=1.4.2
+  - matplotlib=3.8.4
+  - numpy=1.26.4
+  - pandas=2.2.0
+  - pip=24.0
+  - python=3.10.14
+  - scipy=1.13.0
+  - simpy=4.1.1
   - pip:
     - treat-sim
   
