@@ -147,7 +147,7 @@ if __name__ == '__main__':
 If you use the materials within this repository we would appreciate a citation.
 
 ```
-Monks, T., Harper, A., & Heather, A. (2024). Towards Sharing Tools, and Artifacts, for Reusable Simulation: a minimal model example (v1.2.0). Zenodo. https://doi.org/10.5281//zenodo.10026326
+Monks, T., Harper, A., & Heather, A. (2024). Towards Sharing Tools, and Artifacts, for Reusable Simulation: a minimal model example (v2.0.0). Zenodo. https://doi.org/10.5281//zenodo.10026326
 ```
 
 ```bibtex
@@ -158,7 +158,7 @@ Monks, T., Harper, A., & Heather, A. (2024). Towards Sharing Tools, and Artifact
   month        = May,
   year         = 2024,
   publisher    = {Zenodo},
-  version      = {v1.2.0},
+  version      = {v2.0.0},
   doi          = {10.5281//zenodo.10026326.},
   url          = {https://doi.org/10.5281//zenodo.10026326}
 }
