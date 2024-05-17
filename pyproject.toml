@@ -5,9 +5,9 @@ build-backend = "hatchling.build"
 [project]
 name = "treat-sim"
 dynamic = ["version"]
-description = "A free and open implementation of the Treatment Centre Model from Nelson (2013)"
+description = "A Python Free and Open Source Software implementation of the Treatment Centre Model from Nelson (2013)"
 readme = "README.md"
-license = "The MIT License (MIT)"
+license = "MIT"
 requires-python = ">=3.8.12"
 authors = [
     { name = "Thomas Monks", email = "forecast-tools@gmail.com" },
@@ -29,6 +29,8 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/pythonhealthdatascience/stars-treat-sim"
+"Bug Tracker" = "https://github.com/pythonhealthdatascience/stars-treat-sim"
+Documentation = "https://pythonhealthdatascience.github.io/stars-simpy-example-docs/"
 
 [tool.hatch.version]
 path = "treat_sim/__init__.py"
