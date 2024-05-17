@@ -2,6 +2,7 @@ name: stars_treat_sim
 channels:
   - conda-forge
 dependencies:
+  - hatch
   - joblib=1.4.2
   - matplotlib=3.8.4
   - numpy=1.26.4

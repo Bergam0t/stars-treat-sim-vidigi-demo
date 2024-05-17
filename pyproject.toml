@@ -27,7 +27,6 @@ dependencies = [
     "pandas>=1.2.3",
     "scipy>=1.6.1",
     "simpy>=4.0.1",
-    "hatch",
 ]
 
 [project.urls]
