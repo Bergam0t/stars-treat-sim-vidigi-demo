@@ -33,6 +33,14 @@ This code is part of independent research supported by the National Institute fo
 
 ## Instructions to run the model
 
+### Install from PyPI
+
+If you do not wish to you the code or would like to use the model as part of your own work you can install the model as a python package.
+
+```bash
+pip install treat-sim
+```
+
 ### Online Notebooks via Binder
 
 The python code for the model has been setup to run online in Jupyter notebooks via binder [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pythonhealthdatascience/stars-treat-sim/HEAD)
