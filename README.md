@@ -109,12 +109,10 @@ if __name__ == '__main__':
 ├── CHANGES.md
 ├── CITATION.cff
 ├── LICENSE
-├── MANIFEST.in
 ├── notebooks
 │   └── test_package.ipynb
+├── pyproject.toml
 ├── README.md
-├── requirements.txt
-├── setup.py
 └── treat_sim
     ├── data
     │   └── ed_arrivals.csv
@@ -127,11 +125,9 @@ if __name__ == '__main__':
 * `CHANGES.md` - changelog with record of notable changes to project between versions.
 * `CITATION.cff` - citation information for the package.
 * `LICENSE` - details of the MIT permissive license of this work.
-* `MANIFEST.in` - files to include in the package.
 * `notebooks/` - contains a notebook to run the model and provides basic enhanced model documentation.
+* `pyproject.toml` - used to build and distribute python package inc. managing a list of package dependencies.
 * `README.md` - what you are reading now!
-* `requirements.txt` - list of packages and minimum versions required.
-* `setup.py` - used to build and distribute package.
 * `treat_sim/` - contains packaged version of the model.
     * `data/` - directory containing data file used by package.
     * `distributions.py` - distribution classes.
