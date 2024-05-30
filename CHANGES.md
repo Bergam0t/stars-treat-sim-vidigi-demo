@@ -12,7 +12,7 @@ Consistent identifier (represents all versions, resolves to latest): [![DOI](htt
 ### Changes
 
 * TESTS: added automated unit tests under `tests/`
-
+* README: updated to recommend miniforge and mamba instead of anaconda/conda.
 
 ## [v2.0.0](https://github.com/pythonhealthdatascience/stars-treat-sim/releases/tag/v2.0.0) - 2024-05-17 - [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11210422.svg)](https://doi.org/10.5281/zenodo.11210422)
 
