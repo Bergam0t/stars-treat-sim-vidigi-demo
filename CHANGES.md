@@ -7,7 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Consistent identifier (represents all versions, resolves to latest): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10026326.svg)](https://doi.org/10.5281/zenodo.10026326)
 
-## [v2.0.0]() - 2024-05-17
+## [v2.1.0]() - 2024-05-30
+
+### Changes
+
+* TESTS: added automated unit tests under `tests/`
+* README: updated to recommend miniforge and mamba instead of anaconda/conda.
+
+## [v2.0.0](https://github.com/pythonhealthdatascience/stars-treat-sim/releases/tag/v2.0.0) - 2024-05-17 - [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11210422.svg)](https://doi.org/10.5281/zenodo.11210422)
 
 ### Changed
 

@@ -61,16 +61,20 @@ git clone https://github.com/pythonhealthdatascience/stars-treat-sim
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/release/python-380/)
 
-All dependencies can be found in [`binder/environment.yml`]() and are pulled from conda-forge.  To run the code locally, we recommend install [mini-conda](https://docs.conda.io/en/latest/miniconda.html); navigating your terminal (or cmd prompt) to the directory containing the repo and issuing the following command:
+All dependencies can be found in [`binder/environment.yml`]() and are pulled from conda-forge.  To run the code locally, we recommend installing [miniforge](https://github.com/conda-forge/miniforge);
+
+> miniforge is FOSS alternative to Anaconda and miniconda that uses conda-forge as the default channel for packages. It installs both conda and mamba (a drop in replacement for conda) package managers.  We recommend mamba for faster resolving of dependencies and installation of packages. 
+
+navigating your terminal (or cmd prompt) to the directory containing the repo and issuing the following command:
 
 ```
-conda env create -f binder/environment.yml
+mamba env create -f binder/environment.yml
 ```
 
-Activate the conda environment using the following command:
+Activate the mamba environment using the following command:
 
 ```
-conda activate stars_treat_sim
+mamba activate stars_treat_sim
 ```
 
 #### Running the model
@@ -107,6 +111,22 @@ if __name__ == '__main__':
     print(results)
 
 ```
+#### Testing the model
+
+> See our [online documentation](https://pythonhealthdatascience.github.io/stars-simpy-example-docs/content/02_model_code/05_testing.html) for an overview of testing
+
+To run tests activate the virtual environment and entre the following command:
+
+```bash
+pytest
+```
+
+Alternatively to recieve a test coverage estimate issue the following command
+
+```bash
+pytest --cov=treat_sim tests/
+```
+
 
 ## Repo overview
 
@@ -121,6 +141,8 @@ if __name__ == '__main__':
 │   └── test_package.ipynb
 ├── pyproject.toml
 ├── README.md
+├── tests
+│   └── test_model.ipynb
 └── treat_sim
     ├── data
     │   └── ed_arrivals.csv
@@ -136,18 +158,20 @@ if __name__ == '__main__':
 * `notebooks/` - contains a notebook to run the model and provides basic enhanced model documentation.
 * `pyproject.toml` - used to build and distribute python package inc. managing a list of package dependencies.
 * `README.md` - what you are reading now!
+* `tests/` - contains automated testing code
 * `treat_sim/` - contains packaged version of the model.
     * `data/` - directory containing data file used by package.
     * `distributions.py` - distribution classes.
     * `__init__.py` - required as part of package - contains author and version.
     * `model.py` - example SimPy model.
 
+
 ## Citation
 
 If you use the materials within this repository we would appreciate a citation.
 
 ```
-Monks, T., Harper, A., & Heather, A. (2024). Towards Sharing Tools, and Artifacts, for Reusable Simulation: a minimal model example (v2.0.0). Zenodo. https://doi.org/10.5281//zenodo.10026326
+Monks, T., Harper, A., & Heather, A. (2024). Towards Sharing Tools, and Artifacts, for Reusable Simulation: a minimal model example (v2.1.0). Zenodo. https://doi.org/10.5281//zenodo.10026326
 ```
 
 ```bibtex
@@ -163,3 +187,4 @@ Monks, T., Harper, A., & Heather, A. (2024). Towards Sharing Tools, and Artifact
   url          = {https://doi.org/10.5281//zenodo.10026326}
 }
 ```
+
