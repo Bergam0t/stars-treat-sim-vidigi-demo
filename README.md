@@ -121,6 +121,8 @@ if __name__ == '__main__':
 │   └── test_package.ipynb
 ├── pyproject.toml
 ├── README.md
+├── tests
+│   └── test_model.ipynb
 └── treat_sim
     ├── data
     │   └── ed_arrivals.csv
@@ -136,11 +138,13 @@ if __name__ == '__main__':
 * `notebooks/` - contains a notebook to run the model and provides basic enhanced model documentation.
 * `pyproject.toml` - used to build and distribute python package inc. managing a list of package dependencies.
 * `README.md` - what you are reading now!
+* `tests/` - contains automated testing code
 * `treat_sim/` - contains packaged version of the model.
     * `data/` - directory containing data file used by package.
     * `distributions.py` - distribution classes.
     * `__init__.py` - required as part of package - contains author and version.
     * `model.py` - example SimPy model.
+
 
 ## Citation
 
