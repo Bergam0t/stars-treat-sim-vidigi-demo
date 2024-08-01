@@ -30,11 +30,14 @@ In this model treatment of trauma and non-trauma patients is modelled seperately
 import numpy as np
 import pandas as pd
 import itertools
+from pathlib import Path
+
 import simpy
 
 from typing import Optional, Union, List, Dict
 
 from treat_sim.distributions import Exponential, Normal, Uniform, Bernoulli, Lognormal
+from treat_sim.datasets import load_nelson_arrivals
 
 # Constants and defaults for modelling **as-is**
 
@@ -72,12 +75,8 @@ DEFAULT_PROB_TRAUMA = 0.12
 
 # Time dependent arrival rates data
 # The data for arrival rates varies between clinic opening at 6am and closure at
-# 12am.
-
-NSPP_PATH = (
-    "https://raw.githubusercontent.com/pythonhealthdatascience/"
-    + "stars-treat-sim/main/treat_sim/data/ed_arrivals.csv"
-)
+# 12am
+DEFAULT_NSPP_PROFILE_FILE = "auto"
 
 # Resource counts
 
@@ -199,6 +198,7 @@ class Scenario:
         non_trauma_treat_var: Optional[float] = DEFAULT_NON_TRAUMA_TREAT_VAR,
         non_trauma_treat_p: Optional[float] = DEFAULT_NON_TRAUMA_TREAT_P,
         prob_trauma: Optional[float] = DEFAULT_PROB_TRAUMA,
+        arrival_profile: Optional[str] = None,
     ):
         """
         Create a scenario to parameterise the simulation model
@@ -283,6 +283,11 @@ class Scenario:
         self.non_trauma_treat_var = non_trauma_treat_var
         self.non_trauma_treat_p = non_trauma_treat_p
         self.prob_trauma = prob_trauma
+
+        if arrival_profile is None:
+            self.arrivals = load_nelson_arrivals()
+        else:
+            self.arrivals = arrival_profile
 
         self.init_sampling()
 
@@ -384,8 +389,7 @@ class Scenario:
     def init_nspp(self):
 
         # read arrival profile
-        self.arrivals = pd.read_csv(NSPP_PATH)
-        self.arrivals["mean_iat"] = 60 / self.arrivals["arrival_rate"]
+        self.arrivals["mean_iat"] = 60.0 / self.arrivals["arrival_rate"]
 
         # maximum arrival rate (smallest time between arrivals)
         self.lambda_max = self.arrivals["arrival_rate"].max()
