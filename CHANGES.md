@@ -13,7 +13,7 @@ Consistent identifier (represents all versions, resolves to latest): [![DOI](htt
 
 * MODEL: thinning alg: `np.Inf` -> `np.inf` for compatibility with `numpy>=2`
 
-## [v2.1.0]() - 2024-05-30
+## [v2.1.0](https://github.com/pythonhealthdatascience/stars-treat-sim/releases/tag/v2.1.0) - 2024-05-30 - [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11396022.svg)](https://doi.org/10.5281/zenodo.11396022)
 
 ### Changes
 
