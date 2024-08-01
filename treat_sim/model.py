@@ -1034,8 +1034,10 @@ class SimulationSummary:
 
 
 def single_run(
-    scenario, rc_period=DEFAULT_RESULTS_COLLECTION_PERIOD, random_no_set=DEFAULT_RNG_SET
-):
+    scenario: Scenario,
+    rc_period: Optional[float] = DEFAULT_RESULTS_COLLECTION_PERIOD,
+    random_no_set: Optional[int] = DEFAULT_RNG_SET,
+) -> pd.DataFrame:
     """
     Perform a single run of the model and return the results
 
