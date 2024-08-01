@@ -121,7 +121,7 @@ from treat_sim.datasets import load_alternative_arrivals
 if __name__ == '__main__':
 
     # set the arrival profile to later in the day
-    scenario1 = Scenario(arrival_porfile=load_alternative_arrivals())
+    scenario1 = Scenario(arrival_profile=load_alternative_arrivals())
 
     alternative_results = multiple_replications(scenario1).describe().round(2).T
     print(alternative_results)
