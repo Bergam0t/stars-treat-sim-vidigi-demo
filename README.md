@@ -3,12 +3,10 @@
 [![Python](https://img.shields.io/pypi/pyversions/treat_sim)](https://pypi.org/project/treat_sim/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10026326.svg)](https://doi.org/10.5281/zenodo.10026326)
 [![PyPI version fury.io](https://badge.fury.io/py/treat-sim.svg)](https://pypi.org/project/treat-sim/)
-
-
 [<img src="https://img.shields.io/static/v1?label=dockerhub&message=images&color=important?style=for-the-badge&logo=docker">](https://hub.docker.com/r/tommonks01/treat_sim)
 
 
-# Towards Sharing Tools, and Artifacts, for Reusable Simulation: a minimal model example
+# Towards Sharing Tools, and Artifacts, for Reusable Simulation: a minimal model example <a href="https://github.com/pythonhealthdatascience"><img src="imgs/stars_logo_blue.png" align="right" height="120" alt="STARS" /></a>
 
 ## Overview
 
@@ -35,7 +33,7 @@ This code is part of independent research supported by the National Institute fo
 
 ### Install from PyPI
 
-If you do not wish to you the code or would like to use the model as part of your own work you can install the model as a python package.
+If you do not wish to view the code or would like to use the model as part of your own work you can install the model as a python package.
 
 ```bash
 pip install treat-sim
@@ -203,7 +201,7 @@ Monks, T., Harper, A., & Heather, A. (2024). Towards Sharing Tools, and Artifact
   month        = May,
   year         = 2024,
   publisher    = {Zenodo},
-  version      = {v2.0.0},
+  version      = {v2.2.0},
   doi          = {10.5281//zenodo.10026326.},
   url          = {https://doi.org/10.5281//zenodo.10026326}
 }
