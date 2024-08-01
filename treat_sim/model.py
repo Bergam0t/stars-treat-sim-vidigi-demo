@@ -1078,8 +1078,10 @@ def single_run(
 
 
 def multiple_replications(
-    scenario, rc_period=DEFAULT_RESULTS_COLLECTION_PERIOD, n_reps=5
-):
+    scenario: Scenario,
+    rc_period: Optional[int] = DEFAULT_RESULTS_COLLECTION_PERIOD,
+    n_reps: Optional[int] = 5,
+) -> pd.DataFrame:
     """
     Perform multiple replications of the model.
 
