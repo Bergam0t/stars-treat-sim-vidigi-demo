@@ -13,6 +13,7 @@ Consistent identifier (represents all versions, resolves to latest): [![DOI](htt
 
 * All model classes and functions now have python type hints
 * `treat_sim.datasets` module with `load_nelson_arrivals`, `load_alternative_arrivals` and `valid_arrival_profile` functions
+* `tests/test_datasets.py` contains functional and dirty tests for loading and using internal arrival profile datasets.
 
 ### Changed
 
