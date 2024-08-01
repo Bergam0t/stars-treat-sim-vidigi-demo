@@ -32,7 +32,7 @@ import pandas as pd
 import itertools
 import simpy
 
-from typing import Optional, Union
+from typing import Optional, Union, List, Dict
 
 from treat_sim.distributions import Exponential, Normal, Uniform, Bernoulli, Lognormal
 
@@ -931,7 +931,7 @@ class SimulationSummary:
         }
 
     def get_mean_metric(
-        self, metric: str, patients: list[Union[TraumaPathway, NonTraumaPathway]]
+        self, metric: str, patients: List[Union[TraumaPathway, NonTraumaPathway]]
     ) -> float:
         """
         Calculate mean of the performance measure for the
@@ -961,7 +961,7 @@ class SimulationSummary:
         self,
         metric: str,
         n_resources: int,
-        patients: list[Union[TraumaPathway, NonTraumaPathway]],
+        patients: List[Union[TraumaPathway, NonTraumaPathway]],
     ) -> float:
         """
         Calculate proportion of the results collection period
@@ -994,7 +994,7 @@ class SimulationSummary:
         return total / (self.model.rc_period * n_resources)
 
     def get_throughput(
-        self, patients: list[Union[TraumaPathway, NonTraumaPathway]]
+        self, patients: List[Union[TraumaPathway, NonTraumaPathway]]
     ) -> int:
         """
         Returns the total number of patients that have successfully
@@ -1116,7 +1116,7 @@ def multiple_replications(
 # ## Scenario Analysis
 
 
-def get_scenarios():
+def get_scenarios() -> Dict[str, Scenario]:
     """
     Creates a dictionary object containing
     objects of type `Scenario` to run.
@@ -1150,7 +1150,9 @@ def get_scenarios():
     return scenarios
 
 
-def run_scenario_analysis(scenarios, rc_period, n_reps):
+def run_scenario_analysis(
+    scenarios: Dict[str, Scenario], rc_period: float, n_reps: int
+) -> Dict[str, pd.DataFrame]:
     """
     Run each of the scenarios for a specified results
     collection period and replications.
@@ -1165,6 +1167,10 @@ def run_scenario_analysis(scenarios, rc_period, n_reps):
 
     n_rep: int
         Number of replications
+
+    Returns:
+    -------
+    Dict
 
     """
     print("Scenario Analysis")
@@ -1187,7 +1193,7 @@ def run_scenario_analysis(scenarios, rc_period, n_reps):
     return scenario_results
 
 
-def scenario_summary_frame(scenario_results):
+def scenario_summary_frame(scenario_results: Dict[str, pd.DataFrame]) -> pd.DataFrame:
     """
     Mean results for each performance measure by scenario
 
