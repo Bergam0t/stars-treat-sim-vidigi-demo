@@ -32,7 +32,7 @@ import pandas as pd
 import itertools
 import simpy
 
-from typing import Optional
+from typing import Optional, Union
 
 from treat_sim.distributions import Exponential, Normal, Uniform, Bernoulli, Lognormal
 
@@ -304,7 +304,13 @@ class Scenario:
         self.init_sampling()
 
     def init_resourse_counts(
-        self, n_triage: int, n_reg: int, n_exam: int, n_trauma: int, n_cubicles_1: int, n_cubicles_2: int
+        self,
+        n_triage: int,
+        n_reg: int,
+        n_exam: int,
+        n_trauma: int,
+        n_cubicles_1: int,
+        n_cubicles_2: int,
     ):
         """
         Init the counts of resources to default values...
@@ -739,7 +745,10 @@ class TreatmentCentreModel:
         # trauma treatment
         self.args.cubicle_2 = simpy.Resource(self.env, capacity=self.args.n_cubicles_2)
 
-    def run(self, results_collection_period: Optional[float] = DEFAULT_RESULTS_COLLECTION_PERIOD) -> None:
+    def run(
+        self,
+        results_collection_period: Optional[float] = DEFAULT_RESULTS_COLLECTION_PERIOD,
+    ) -> None:
         """
         Conduct a single run of the model in its current
         configuration
@@ -819,7 +828,7 @@ class SimulationSummary:
     End of run result processing logic of the simulation model
     """
 
-    def __init__(self, model):
+    def __init__(self, model: TreatmentCentreModel) -> None:
         """
         Constructor
 
@@ -832,7 +841,7 @@ class SimulationSummary:
         self.args = model.args
         self.results = None
 
-    def process_run_results(self):
+    def process_run_results(self) -> None:
         """
         Calculates statistics at end of run.
         """
@@ -921,7 +930,9 @@ class SimulationSummary:
             "09_throughput": self.get_throughput(patients),
         }
 
-    def get_mean_metric(self, metric, patients):
+    def get_mean_metric(
+        self, metric: str, patients: list[Union[TraumaPathway, NonTraumaPathway]]
+    ) -> float:
         """
         Calculate mean of the performance measure for the
         select cohort of patients,
@@ -935,14 +946,23 @@ class SimulationSummary:
             The name of the metric e.g. 'wait_treat'
 
         patients: list
-            A list of patients
+            A list of TraumaPathway and NonTraumaPathway patients
+
+        Returns:
+        -------
+        float
         """
         mean = np.array(
             [getattr(p, metric) for p in patients if getattr(p, metric) > -np.inf]
         ).mean()
         return mean
 
-    def get_resource_util(self, metric, n_resources, patients):
+    def get_resource_util(
+        self,
+        metric: str,
+        n_resources: int,
+        patients: list[Union[TraumaPathway, NonTraumaPathway]],
+    ) -> float:
         """
         Calculate proportion of the results collection period
         where a resource was in use.
@@ -957,8 +977,15 @@ class SimulationSummary:
         metric: str
             The name of the metric e.g. 'treatment_duration'
 
+        n_resources: int
+            The number of resources available (e.g. number of trauma rooms)
+
         patients: list
-            A list of patients
+            A list of TraumaPathway and NonTraumaPathway patients
+
+        Returns:
+        -------
+        float
         """
         total = np.array(
             [getattr(p, metric) for p in patients if getattr(p, metric) > -np.inf]
@@ -966,7 +993,9 @@ class SimulationSummary:
 
         return total / (self.model.rc_period * n_resources)
 
-    def get_throughput(self, patients):
+    def get_throughput(
+        self, patients: list[Union[TraumaPathway, NonTraumaPathway]]
+    ) -> int:
         """
         Returns the total number of patients that have successfully
         been processed and discharged in the treatment centre
@@ -979,7 +1008,7 @@ class SimulationSummary:
 
         Returns:
         ------
-        float
+        int
         """
         return len([p for p in patients if p.total_time > -np.inf])
 
