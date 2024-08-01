@@ -30,14 +30,13 @@ In this model treatment of trauma and non-trauma patients is modelled seperately
 import numpy as np
 import pandas as pd
 import itertools
-from pathlib import Path
 
 import simpy
 
 from typing import Optional, Union, List, Dict
 
 from treat_sim.distributions import Exponential, Normal, Uniform, Bernoulli, Lognormal
-from treat_sim.datasets import load_nelson_arrivals
+from treat_sim.datasets import load_nelson_arrivals, valid_arrival_profile
 
 # Constants and defaults for modelling **as-is**
 
@@ -198,7 +197,7 @@ class Scenario:
         non_trauma_treat_var: Optional[float] = DEFAULT_NON_TRAUMA_TREAT_VAR,
         non_trauma_treat_p: Optional[float] = DEFAULT_NON_TRAUMA_TREAT_P,
         prob_trauma: Optional[float] = DEFAULT_PROB_TRAUMA,
-        arrival_profile: Optional[str] = None,
+        arrival_profile: Optional[pd.DataFrame | None] = None,
     ):
         """
         Create a scenario to parameterise the simulation model
@@ -265,6 +264,17 @@ class Scenario:
 
         prob_trauma: float
             probability that a new arrival is a trauma patient.
+
+        arrival_profile: None | pd.DataFrame
+            pandas dataframe containing the arrival profile for the day.
+            This should have two columns 'period' and 'arrival_rate'.  There
+            should be 18 rows (each representing an hour)
+
+        See also:
+        ---------
+        datasets.load_nelson_arrivals()
+        datasets.load_alternative_arrivals()
+        datasets.valid_arrival_profile()
         """
         # sampling
         self.random_number_set = random_number_set
@@ -287,7 +297,8 @@ class Scenario:
         if arrival_profile is None:
             self.arrivals = load_nelson_arrivals()
         else:
-            self.arrivals = arrival_profile
+            if valid_arrival_profile(arrival_profile):
+                self.arrivals = arrival_profile
 
         self.init_sampling()
 
