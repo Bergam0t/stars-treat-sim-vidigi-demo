@@ -9,6 +9,15 @@ Consistent identifier (represents all versions, resolves to latest): [![DOI](htt
 
 ## [v2.2.0]() UNRELEASED
 
+### Added
+
+* All model classes and functions now have python type hints
+* `treat_sim.datasets` module with `load_nelson_arrivals`, `load_alternative_arrivals` and `valid_arrival_profile` functions
+
+### Changed
+
+* `Scenario` defaults to the time dependent arrival profile given in Nelson (2013), but also accepts `arrival_profile` a `pandas.DataFrame` parameter for scenario analysis. 
+
 ### Fixed
 
 * MODEL: thinning alg: `np.Inf` -> `np.inf` for compatibility with `numpy>=2`
