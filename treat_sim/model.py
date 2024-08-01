@@ -407,7 +407,7 @@ class TraumaPathway:
     Following treatment they are discharged.
     """
 
-    def __init__(self, identifier, env, args):
+    def __init__(self, identifier: int, env: simpy.Environment, args: Scenario) -> None:
         """
         Constructor method
 
@@ -498,7 +498,7 @@ class TraumaPathway:
         # total time in system
         self.total_time = self.env.now - self.arrival
 
-    def triage_complete(self):
+    def triage_complete(self) -> None:
         """
         Triage complete event
         """
@@ -507,13 +507,13 @@ class TraumaPathway:
             f"waiting time was {self.wait_triage:.3f}"
         )
 
-    def trauma_complete(self):
+    def trauma_complete(self) -> None:
         """
         Patient stay in trauma is complete.
         """
         trace(f"stabilisation of patient {self.identifier} at " f"{self.env.now:.3f}")
 
-    def treatment_complete(self):
+    def treatment_complete(self) -> None:
         """
         Treatment complete event
         """
@@ -523,7 +523,7 @@ class TraumaPathway:
         )
 
 
-class NonTraumaPathway(object):
+class NonTraumaPathway:
     """
     Encapsulates the process a patient with minor injuries and illness.
 
@@ -534,7 +534,7 @@ class NonTraumaPathway(object):
     Following treatment they are discharged.
     """
 
-    def __init__(self, identifier, env, args):
+    def __init__(self, identifier: int, env: simpy.Environment, args: Scenario) -> None:
         """
         Constructor method
 
@@ -695,7 +695,7 @@ class TreatmentCentreModel:
 
     """
 
-    def __init__(self, args):
+    def __init__(self, args: Scenario):
         self.env = simpy.Environment()
         self.args = args
         self.init_resources()
@@ -707,7 +707,7 @@ class TreatmentCentreModel:
         self.rc_period = None
         self.results = None
 
-    def init_resources(self):
+    def init_resources(self) -> None:
         """
         Init the number of resources
         and store in the arguments container object
@@ -739,7 +739,7 @@ class TreatmentCentreModel:
         # trauma treatment
         self.args.cubicle_2 = simpy.Resource(self.env, capacity=self.args.n_cubicles_2)
 
-    def run(self, results_collection_period=DEFAULT_RESULTS_COLLECTION_PERIOD):
+    def run(self, results_collection_period: Optional[float] = DEFAULT_RESULTS_COLLECTION_PERIOD) -> None:
         """
         Conduct a single run of the model in its current
         configuration
