@@ -1,3 +1,6 @@
+
+# 💫 Towards Sharing Tools, and Artifacts, for Reusable Simulation (STARS): a minimal model example
+
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pythonhealthdatascience/stars-treat-sim/HEAD)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/pypi/pyversions/treat_sim)](https://pypi.org/project/treat_sim/)
@@ -5,20 +8,18 @@
 [![PyPI version fury.io](https://badge.fury.io/py/treat-sim.svg)](https://pypi.org/project/treat-sim/)
 [<img src="https://img.shields.io/static/v1?label=dockerhub&message=images&color=important?style=for-the-badge&logo=docker">](https://hub.docker.com/r/tommonks01/treat_sim)
 
-
-# Towards Sharing Tools, and Artifacts, for Reusable Simulation: a minimal model example <a href="https://github.com/pythonhealthdatascience"><img src="imgs/stars_logo_blue.png" align="right" height="120" alt="STARS" /></a>
-
 ## Overview
 
-The materials and methods in this repository support work towards developing the S.T.A.R.S healthcare framework (**S**haring **T**ools and **A**rtifacts for **R**eusable **S**imulations in healthcare).  The code and written materials here demonstrate the application of S.T.A.R.S' version 1 to sharing a `SimPy` discrete-event simulation model and associated research artifacts.  
+The materials and methods in this repository support work towards developing the STARShealthcare framework (**S**haring **T**ools and **A**rtifacts for **R**eusable **S**imulations in healthcare).  The code and written materials here demonstrate the application of STARS version 1 to sharing a `SimPy` discrete-event simulation model and associated research artifacts.  
 
 * All artifacts in this repository are linked to study researchers via ORCIDs;
 * Model code is made available under an MIT license;
-* Python dependencies are managed through `conda`;
-* Documentation of the model is enhanced using a Jupyter notebook.
-* The python code itself can be viewed and executed in Jupyter notebooks via [Binder](https://mybinder.org); 
+* Python dependencies are managed through `mamba`;
+* Documentation of the model is enhanced using a simple Jupyter notebook.
+* The python model itself can be viewed and executed in Jupyter notebooks via [Binder](https://mybinder.org); 
 * The materials are deposited and made citable using Zenodo;
 * The model is sharable with other researchers and the NHS without the need to install software.
+* A full suite of automated tests are provided with the model. 
 
 ## Author ORCIDs
 
@@ -57,7 +58,7 @@ git clone https://github.com/pythonhealthdatascience/stars-treat-sim
 
 #### Installing dependencies
 
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/release/python-380/)
+[![Python](https://img.shields.io/pypi/pyversions/treat_sim)](https://pypi.org/project/treat_sim/)
 
 All dependencies can be found in [`binder/environment.yml`]() and are pulled from conda-forge.  To run the code locally, we recommend installing [miniforge](https://github.com/conda-forge/miniforge);
 
