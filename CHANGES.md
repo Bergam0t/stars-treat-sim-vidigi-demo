@@ -17,6 +17,7 @@ Consistent identifier (represents all versions, resolves to latest): [![DOI](htt
 ### Changed
 
 * `Scenario` defaults to the time dependent arrival profile given in Nelson (2013), but also accepts `arrival_profile` a `pandas.DataFrame` parameter for scenario analysis. 
+* Default arrival profile is sourced from local package rather than GitHub URL.
 
 ### Fixed
 
