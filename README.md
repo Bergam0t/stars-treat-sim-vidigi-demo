@@ -111,6 +111,23 @@ if __name__ == '__main__':
     print(results)
 
 ```
+
+The model can be run with different time dependent arrival profiles. By default the model runs with the arrival profile taken from Nelson (2013). The `datasets` module provides access to an alternative example dataset where arrivals are slightly skewed towards the end of the working day.  
+
+```python
+
+from treat_sim.model import Scenario, multiple_replications
+from treat_sim.datasets import load_alternative_arrivals
+
+if __name__ == '__main__':
+
+    # set the arrival profile to later in the day
+    scenario1 = Scenario(arrival_porfile=load_alternative_arrivals())
+
+    alternative_results = multiple_replications(scenario1).describe().round(2).T
+    print(alternative_results)
+```
+
 #### Testing the model
 
 > See our [online documentation](https://pythonhealthdatascience.github.io/stars-simpy-example-docs/content/02_model_code/05_testing.html) for an overview of testing
@@ -142,12 +159,15 @@ pytest --cov=treat_sim tests/
 ├── pyproject.toml
 ├── README.md
 ├── tests
+│   └── test_datasets.ipynb
 │   └── test_model.ipynb
 └── treat_sim
     ├── data
     │   └── ed_arrivals.csv
-    ├── distributions.py
+    │   └── ed_arrivals_scenario1.csv
     ├── __init__.py
+    ├── datasets.py
+    ├── distributions.py
     └── model.py
 ```
 
@@ -161,8 +181,9 @@ pytest --cov=treat_sim tests/
 * `tests/` - contains automated testing code
 * `treat_sim/` - contains packaged version of the model.
     * `data/` - directory containing data file used by package.
-    * `distributions.py` - distribution classes.
     * `__init__.py` - required as part of package - contains author and version.
+    * `datasets.py` - functions to load example dataset for parameterising the model.
+    * `distributions.py` - distribution classes.
     * `model.py` - example SimPy model.
 
 
