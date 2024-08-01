@@ -152,7 +152,7 @@ RESULT_LABELS = {
 # Utility functions
 
 
-def trace(msg):
+def trace(msg: str) -> None:
     """
     Utility function for printing a trace as the
     simulation model executes.
@@ -291,7 +291,7 @@ class Scenario:
             n_triage, n_reg, n_exam, n_trauma, n_cubicles_1, n_cubicles_2
         )
 
-    def set_random_no_set(self, random_number_set):
+    def set_random_no_set(self, random_number_set: int) -> None:
         """
         Controls the random sampling
         Parameters:
@@ -304,7 +304,7 @@ class Scenario:
         self.init_sampling()
 
     def init_resourse_counts(
-        self, n_triage, n_reg, n_exam, n_trauma, n_cubicles_1, n_cubicles_2
+        self, n_triage: int, n_reg: int, n_exam: int, n_trauma: int, n_cubicles_1: int, n_cubicles_2: int
     ):
         """
         Init the counts of resources to default values...
