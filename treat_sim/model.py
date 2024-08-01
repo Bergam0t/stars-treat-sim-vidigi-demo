@@ -179,7 +179,7 @@ class Scenario:
 
     def __init__(
         self,
-        random_number_set: Optional[int] = DEFAULT_RNG_SET,
+        random_number_set: Optional[int | None] = DEFAULT_RNG_SET,
         n_triage: Optional[int] = DEFAULT_N_TRIAGE,
         n_reg: Optional[int] = DEFAULT_N_REG,
         n_exam: Optional[int] = DEFAULT_N_EXAM,
