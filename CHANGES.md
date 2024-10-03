@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Consistent identifier (represents all versions, resolves to latest): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10026326.svg)](https://doi.org/10.5281/zenodo.10026326)
 
-## [v2.2.0]() UNRELEASED
+## [v2.2.0](https://github.com/pythonhealthdatascience/stars-treat-sim/releases/tag/v2.2.0) - 2024-08-01
 
 ### Added
 
@@ -22,7 +22,7 @@ Consistent identifier (represents all versions, resolves to latest): [![DOI](htt
 
 ### Fixed
 
-* MODEL: thinning alg: `np.Inf` -> `np.inf` for compatibility with `numpy>=2`
+* MODEL: thinning algorithm: `np.Inf` -> `np.inf` for compatibility with `numpy>=2`
 
 ## [v2.1.0](https://github.com/pythonhealthdatascience/stars-treat-sim/releases/tag/v2.1.0) - 2024-05-30 - [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11396022.svg)](https://doi.org/10.5281/zenodo.11396022)
 
