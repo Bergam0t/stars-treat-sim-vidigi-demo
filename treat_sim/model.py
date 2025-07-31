@@ -463,8 +463,9 @@ class TraumaPathway:
     Patients are stabilised in resus (trauma) and then sent to Treatment.
     Following treatment they are discharged.
     """
-
-    def __init__(self, identifier: int, env: simpy.Environment, args: Scenario) -> None:
+    def __init__(self, identifier: int, env: simpy.Environment, args: Scenario,
+                 # --- MARK: Vidigi modification - pass in logger --- #
+                 logger: EventLogger) -> None:
         """
         Constructor method
 
@@ -483,6 +484,9 @@ class TraumaPathway:
         self.identifier = identifier
         self.env = env
         self.args = args
+        # --- MARK: Vidigi modification - set up logger as attribute --- #
+        self.logger = logger
+        # -------------------------------------------------------------- #
 
         # metrics
         self.arrival = -np.inf
@@ -591,7 +595,9 @@ class NonTraumaPathway:
     Following treatment they are discharged.
     """
 
-    def __init__(self, identifier: int, env: simpy.Environment, args: Scenario) -> None:
+    def __init__(self, identifier: int, env: simpy.Environment, args: Scenario,
+                 # --- MARK: Vidigi modification - pass in logger --- #
+                 logger: EventLogger) -> None:
         """
         Constructor method
 
@@ -610,6 +616,9 @@ class NonTraumaPathway:
         self.identifier = identifier
         self.env = env
         self.args = args
+        # --- MARK: Vidigi modification - set up logger as attribute --- #
+        self.logger = logger
+        # -------------------------------------------------------------- #
 
         # triage resource
         self.triage = args.triage
@@ -763,6 +772,11 @@ class TreatmentCentreModel:
 
         self.rc_period = None
         self.results = None
+        # --- MARK: Vidigi modification - set up event logger --- #
+        self.logger = EventLogger(
+            env=self.env
+            )
+        # ------------------------------------------------------- #
 
     def init_resources(self) -> None:
         """
@@ -863,11 +877,21 @@ class TreatmentCentreModel:
             trauma = self.args.p_trauma_dist.sample()
             if trauma:
                 # create and store a trauma patient to update KPIs.
-                new_patient = TraumaPathway(patient_count, self.env, self.args)
+                new_patient = TraumaPathway(
+                    patient_count, self.env, self.args,
+                    # --- MARK: Vidigi modification - pass in event logger --- #
+                    self.logger
+                    )
+                    # -------------------------------------------------------- #
                 self.trauma_patients.append(new_patient)
             else:
                 # create and store a non-trauma patient to update KPIs.
-                new_patient = NonTraumaPathway(patient_count, self.env, self.args)
+                new_patient = NonTraumaPathway(
+                    patient_count, self.env, self.args,
+                    # --- MARK: Vidigi modification - pass in event logger --- #
+                    self.logger
+                    )
+                    # -------------------------------------------------------- #
                 self.non_trauma_patients.append(new_patient)
 
             # start the pathway process for the patient
