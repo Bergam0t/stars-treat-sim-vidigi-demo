@@ -1294,6 +1294,40 @@ class SimulationSummary:
         df.index.name = "rep"
         return df
 
+     # --- MARK - Vidigi modification: add animation function call --- #
+    def animate_run(self,
+                    scenario: Scenario,
+                    rc_period: Optional[float] = DEFAULT_RESULTS_COLLECTION_PERIOD,
+                    debug_animation: Optional[bool] = False):
+        fig = animate_activity_log(
+            event_log=self.model.logger.to_dataframe() ,
+            event_position_df=EVENT_POSITION_DF,
+            scenario=scenario,
+            debug_mode=debug_animation,
+            setup_mode=False,
+            every_x_time_units=5,
+            include_play_button=True,
+            gap_between_entities=11,
+            gap_between_resources=15,
+            gap_between_resource_rows=30,
+            gap_between_queue_rows=30,
+            plotly_height=600,
+            plotly_width=1000,
+            override_x_max=700,
+            override_y_max=675,
+            entity_icon_size=10,
+            resource_icon_size=13,
+            text_size=15,
+            wrap_queues_at=10,
+            step_snapshot_max=20,
+            limit_duration=rc_period,
+            time_display_units="dhm",
+            display_stage_labels=False,
+            add_background_image="https://raw.githubusercontent.com/Bergam0t/vidigi/refs/heads/main/examples/example_2_branching_multistep/Full%20Model%20Background%20Image%20-%20Horizontal%20Layout.drawio.png",
+        )
+
+        return fig
+    # -------------------------------------------------------------- #
 
 # ## Executing a model
 
@@ -1302,28 +1336,39 @@ def single_run(
     scenario: Scenario,
     rc_period: Optional[float] = DEFAULT_RESULTS_COLLECTION_PERIOD,
     random_no_set: Optional[int] = DEFAULT_RNG_SET,
-) -> pd.DataFrame:
+    # --- MARK - Vidigi modification: add parameter to determine if animation generated --- #
+    animate_run: Optional[bool] = False,
+    debug_animation: Optional[bool] = False
+    # ------------------------------------------------------------------------------------ #
+) -> Union[pd.DataFrame, Tuple[pd.DataFrame, Any]]:
     """
-    Perform a single run of the model and return the results
+    Perform one simulation run and return its summary (and optionally an animation).
 
-    Parameters:
-    -----------
+    Parameters
+    ----------
+    scenario : Scenario
+        The scenario object containing all parameters for the run.  The random
+        number set is applied to it via `scenario.set_random_no_set`.
+    rc_period : float, optional
+        Duration (period) over which results are collected in the simulation.
+        Defaults to `DEFAULT_RESULTS_COLLECTION_PERIOD`.
+    random_no_set : int or None, optional
+        Controls the deterministic random seed set used by stochastic components
+        of the model. Different integers yield different reproducible draws;
+        setting to `None` uses a random set of seeds. Defaults to `DEFAULT_RNG_SET`.
+    animate_run : bool, optional
+        If True, also generate and return an animation of the run. Defaults to False.
+    debug_animation: bool, optional
+        If True, print messages generated during animation creation
 
-    scenario: Scenario object
-        The scenario/parameters to run
-
-    rc_period: int
-        The length of the simulation run that collects results
-
-    random_no_set: int or None, optional (default=DEFAULT_RNG_SET)
-        Controls the set of random seeds used by the stochastic parts of the
-        model.  Set to different ints to get different results.  Set to None
-        for a random set of seeds.
-
-    Returns:
-    --------
-        pandas.DataFrame:
-        results from single run.
+    Returns
+    -------
+    pandas.DataFrame
+        Summary dataframe of the simulation run if `animate_run` is False.
+    tuple[pandas.DataFrame, Any]
+        Tuple of (summary dataframe, animation figure) if `animate_run` is True.
+        The second element is the object returned by `summary.animate_run`
+        (e.g., a matplotlib Figure or equivalent animation object).
     """
 
     # set random number set - this controls sampling for the run.
@@ -1339,7 +1384,14 @@ def single_run(
     summary = SimulationSummary(model)
     summary_df = summary.summary_frame()
 
-    return summary_df
+    # --- MARK - Vidigi modification: return animation if requested --- #
+    if animate_run:
+        fig = summary.animate_run(rc_period=rc_period, scenario=scenario,
+                                  debug_animation=debug_animation)
+        return summary_df, fig
+    # ----------------------------------------------------------------- #
+    else:
+        return summary_df
 
 
 def multiple_replications(
@@ -1456,6 +1508,54 @@ def run_scenario_analysis(
 
     print("Scenario analysis complete.")
     return scenario_results
+
+
+# --- MARK - Vidigi modification: return animation if requested --- #
+# --- At present, this just does a single run per scenario and returns the
+# animation for this
+# A better approach may be to run multiple runs, take a 'representative' simulation
+# (or perhaps a 'bad', 'average' and 'good' simulation, based on a user-chosen metric)
+# and return animations for each, to minimize risks associated with users looking at a single
+# animation and basing their decisions too heavily on this
+def run_scenario_analysis_animations(
+    scenarios: Dict[str, Scenario], rc_period: float
+) -> Dict[str, pd.DataFrame]:
+    """
+    Run each of the scenarios for a specified results
+    collection period and replications.
+
+    Params:
+    ------
+    scenarios: dict
+        dictionary of Scenario objects
+
+    rc_period: float
+        model run length
+
+    Returns:
+    -------
+    Dict
+
+    """
+    print("Scenario Analysis")
+    print(f"No. Scenario: {len(scenarios)}")
+    print("Replications: 1")
+
+    scenario_results = {}
+    for sc_name, scenario in scenarios.items():
+
+        print(f"Running {sc_name}", end=" => ")
+        summary_df, animation_fig = single_run(
+            scenario, rc_period=rc_period, animate_run=True, debug_animation=False
+        )
+        print("done.\n")
+
+        # save the results
+        scenario_results[sc_name] = animation_fig
+
+    print("Scenario analysis complete.")
+    return scenario_results
+# -------------------------------------------------------------------- #
 
 
 def scenario_summary_frame(scenario_results: Dict[str, pd.DataFrame]) -> pd.DataFrame:
