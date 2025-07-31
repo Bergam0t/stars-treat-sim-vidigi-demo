@@ -5,26 +5,26 @@
 FirstTreatment: A health clinic based in the US.
 
 This example is based on exercise 13 from Nelson (2013) page 170.
- 
-Nelson. B.L. (2013). Foundations and methods of stochastic simulation.
-Patients arrive to the health clinic between 6am and 12am following a 
-non-stationary poisson process. After 12am arriving patients are diverted 
-elsewhere and remaining WIP is completed.  
-On arrival, all patients quickly sign-in and are triaged.   
 
-The health clinic expects two types of patient arrivals: 
+Nelson. B.L. (2013). Foundations and methods of stochastic simulation.
+Patients arrive to the health clinic between 6am and 12am following a
+non-stationary poisson process. After 12am arriving patients are diverted
+elsewhere and remaining WIP is completed.
+On arrival, all patients quickly sign-in and are triaged.
+
+The health clinic expects two types of patient arrivals:
 
 **Trauma arrivals:**
-patients with severe illness and trauma that must first be stabilised in a 
-trauma room. These patients then undergo treatment in a cubicle before being 
+patients with severe illness and trauma that must first be stabilised in a
+trauma room. These patients then undergo treatment in a cubicle before being
 discharged.
 
 **Non-trauma arrivals**
-patients with minor illness and no trauma go through registration and 
+patients with minor illness and no trauma go through registration and
 examination activities. A proportion of non-trauma patients require treatment
-in a cubicle before being discharged. 
+in a cubicle before being discharged.
 
-In this model treatment of trauma and non-trauma patients is modelled seperately 
+In this model treatment of trauma and non-trauma patients is modelled seperately
 """
 
 import numpy as np
@@ -33,10 +33,10 @@ import itertools
 
 import simpy
 
-from typing import Optional, Union, List, Dict
+from typing import Optional, Union, List, Dict, Tuple, Any
 
-from treat_sim.distributions import Exponential, Normal, Uniform, Bernoulli, Lognormal
-from treat_sim.datasets import load_nelson_arrivals, valid_arrival_profile
+from treat_sim_vidigi.distributions import Exponential, Normal, Uniform, Bernoulli, Lognormal
+from treat_sim_vidigi.datasets import load_nelson_arrivals, valid_arrival_profile
 
 # --- MARK: Vidigi modification - vidigi imports --- #
 from vidigi.resources import VidigiStore
