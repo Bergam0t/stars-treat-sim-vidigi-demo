@@ -38,6 +38,13 @@ from typing import Optional, Union, List, Dict
 from treat_sim.distributions import Exponential, Normal, Uniform, Bernoulli, Lognormal
 from treat_sim.datasets import load_nelson_arrivals, valid_arrival_profile
 
+# --- MARK: Vidigi modification - vidigi imports --- #
+from vidigi.resources import VidigiStore
+from vidigi.logging import EventLogger
+from vidigi.utils import EventPosition, create_event_position_df
+from vidigi.animation import animate_activity_log
+# --------------------------------------------------- #
+
 # Constants and defaults for modelling **as-is**
 
 # Distribution parameters
