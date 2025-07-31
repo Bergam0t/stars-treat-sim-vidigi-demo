@@ -15,6 +15,5 @@ dependencies:
   - simpy=4.1.1
   - sim-tools=0.4.0
   - pip:
-    - treat-sim
-  
-
+    - treat-sim-vidigi
+    - vidigi=1.0.0

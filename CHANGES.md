@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Consistent identifier (represents all versions, resolves to latest): [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10026326.svg)](https://doi.org/10.5281/zenodo.10026326)
 
+## [v3.0.0](https://github.com/pythonhealthdatascience/stars-treat-sim/releases/tag/v3.0.0) - 2025-07-31
+
+* Made all necessary changes to add animated outputs via the vidigi package
+
 ## [v2.2.0](https://github.com/pythonhealthdatascience/stars-treat-sim/releases/tag/v2.2.0) - 2024-08-01
 
 ### Added
@@ -17,7 +21,7 @@ Consistent identifier (represents all versions, resolves to latest): [![DOI](htt
 
 ### Changed
 
-* `Scenario` defaults to the time dependent arrival profile given in Nelson (2013), but also accepts `arrival_profile` a `pandas.DataFrame` parameter for scenario analysis. 
+* `Scenario` defaults to the time dependent arrival profile given in Nelson (2013), but also accepts `arrival_profile` a `pandas.DataFrame` parameter for scenario analysis.
 * Default arrival profile is sourced from local package rather than GitHub URL.
 
 ### Fixed
@@ -36,8 +40,8 @@ Consistent identifier (represents all versions, resolves to latest): [![DOI](htt
 ### Changed
 
 * MODEL: Examination distribution modified to truncated normal distribution (minimum 0.5)
-* Mitgrated package build to `pyproject.toml` and `hatch`. 
-* Updated local conda virtual environment to python 3.10.x 
+* Mitgrated package build to `pyproject.toml` and `hatch`.
+* Updated local conda virtual environment to python 3.10.x
 * Tested model in python 3.11 and 3.12 and added to supported versions.
 
 ### Removed

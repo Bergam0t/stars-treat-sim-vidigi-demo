@@ -4,7 +4,7 @@
 cff-version: 1.2.0
 title: >-
   Towards Sharing Tools, and Artifacts, for Reusable
-  Simulation: a minimal model example
+  Simulation: a minimal model example with vidigi
 message: >-
   If you use this software, please cite it using the
   metadata from this file.
@@ -22,7 +22,11 @@ authors:
     family-names: Heather
     affiliation: University of Exeter
     orcid: 'https://orcid.org/0000-0002-6596-3479'
-repository-code: 'https://github.com/pythonhealthdatascience/stars-treat-sim'
+  - given-names: Sammi
+    family-names: Rosser
+    affiliation: University of Exeter
+    orcid: 'https://orcid.org/0000-0002-9552-8988'
+repository-code: 'https://github.com/Bergam0t/stars-treat-sim-vidigi-demo'
 identifiers:
   - description: Consistent identifier for archived snapshots of repository (represents all versions, resolves to latest)
     type: doi
@@ -35,13 +39,17 @@ abstract: >
   healthcare).  The code and written materials re
   demonstrate the application of S.T.A.R.S' version 1 to
   sharing a `SimPy` discrete-event simulation model and
-  associated research artifacts.  
+  associated research artifacts.  It has then been extended to
+  demonstrate the incorporation of the vidigi package for
+  animated visualisation of discrete event simulations.
 keywords:
   - Free and Open Source Software
   - Model Reuse
   - Discrete-event simulation
   - Open Science
   - SimPy
+  - Visualisation
+  - Animation
 license: MIT
 references:
   - type: article

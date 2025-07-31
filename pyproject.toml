@@ -3,14 +3,15 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "treat-sim"
+name = "treat-sim-vidigi"
 dynamic = ["version"]
-description = "A Python Free and Open Source Software implementation of the Treatment Centre Model from Nelson (2013)"
+description = "A Python Free and Open Source Software implementation of the Treatment Centre Model from Nelson (2013) - with animation"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.8.19"
 authors = [
     { name = "Thomas Monks", email = "forecast-tools@gmail.com" },
+    { name = "Sammi Rosser", email = "hi@sammirosser.com" },
 ]
 classifiers = [
     "License :: OSI Approved :: MIT License",
@@ -26,7 +27,9 @@ dependencies = [
     "numpy>=1.19.2",
     "pandas>=1.2.3",
     "scipy>=1.6.1",
-    "simpy>=4.0.1"
+    "simpy>=4.0.1",
+    "vidigi>=1.0.0",
+    "nbformat>=4.2.0"
 ]
 
 [project.urls]
@@ -35,9 +38,9 @@ Homepage = "https://github.com/pythonhealthdatascience/stars-treat-sim"
 Documentation = "https://pythonhealthdatascience.github.io/stars-simpy-example-docs/"
 
 [tool.hatch.version]
-path = "treat_sim/__init__.py"
+path = "treat_sim_vidigi/__init__.py"
 
 [tool.hatch.build.targets.sdist]
 include = [
-    "/treat_sim",
+    "/treat_sim_vidigi",
 ]
