@@ -16,4 +16,7 @@ dependencies:
   - sim-tools=0.4.0
   - pip:
     - treat-sim-vidigi
-    - vidigi=1.0.0
+    - vidigi==1.0.0
+    - ipywidgets
+    - anywidget
+    - nbformat>=4.2.0
