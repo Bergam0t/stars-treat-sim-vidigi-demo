@@ -509,10 +509,30 @@ class TraumaPathway:
         """
         # record the time of arrival and entered the triage queue
         self.arrival = self.env.now
+        # --- MARK: Vidigi modification - log patient arrival --- #
+        # --- Also log start of queueing
+        self.logger.log_arrival(
+            entity_id=self.identifier
+            )
+
+        self.logger.log_queue(
+            entity_id=self.identifier,
+            event="triage_wait_begins"
+        )
+        # ------------------------------------------------------- #
 
         # request sign-in/triage
         with self.args.triage.request() as req:
-            yield req
+            # --- MARK: Vidigi modification - return request object --- #
+            # --- Also log resource use start
+            obtained_triage_resource = yield req
+
+            self.logger.log_resource_use_start(
+                entity_id=self.identifier,
+                event="triage_begins",
+                resource_id=obtained_triage_resource.id_attribute
+                )
+            # --------------------------------------------------------- #
             # record the waiting time for triage
             self.wait_triage = self.env.now - self.arrival
 
@@ -521,14 +541,36 @@ class TraumaPathway:
             # sample triage duration.
             self.triage_duration = self.args.triage_dist.sample()
             yield self.env.timeout(self.triage_duration)
+            # --- MARK: Vidigi modification - log resource use end --- #
+            self.logger.log_resource_use_end(
+                entity_id=self.identifier,
+                event="triage_ends",
+                resource_id=obtained_triage_resource.id_attribute
+                )
+            # -------------------------------------------------------- #
             self.triage_complete()
 
         # record the time that entered the trauma queue
         start_wait = self.env.now
+        # --- MARK: Vidigi modification - log start of queueing --- #
+        self.logger.log_queue(
+            entity_id=self.identifier,
+            event="TRAUMA_stabilisation_wait_begins"
+        )
+        # ------------------------------------------------------- #
 
         # request trauma room
         with self.args.trauma.request() as req:
-            yield req
+            # --- MARK: Vidigi modification - return request object --- #
+            # --- Also log resource use start
+            obtained_stabilisation_resource = yield req
+
+            self.logger.log_resource_use_start(
+                entity_id=self.identifier,
+                event="TRAUMA_stabilisation_begins",
+                resource_id=obtained_stabilisation_resource.id_attribute
+                )
+            # --------------------------------------------------------- #
 
             # record the waiting time for trauma
             self.wait_trauma = self.env.now - start_wait
@@ -537,14 +579,37 @@ class TraumaPathway:
             self.trauma_duration = self.args.trauma_dist.sample()
             yield self.env.timeout(self.trauma_duration)
 
+            # --- MARK: Vidigi modification - log resource use end --- #
+            self.logger.log_resource_use_end(
+                entity_id=self.identifier,
+                event="TRAUMA_stabilisation_ends",
+                resource_id=obtained_stabilisation_resource.id_attribute
+                )
+            # -------------------------------------------------------- #
+
             self.trauma_complete()
 
         # record the time that entered the treatment queue
         start_wait = self.env.now
+        # --- MARK: Vidigi modification - log start of queueing --- #
+        self.logger.log_queue(
+            entity_id=self.identifier,
+            event="TRAUMA_treatment_wait_begins"
+        )
+        # ------------------------------------------------------- #
 
         # request treatment cubicle
         with self.args.cubicle_2.request() as req:
-            yield req
+            # --- MARK: Vidigi modification - return request object --- #
+            # --- Also log resource use start
+            obtained_treatment_resource = yield req
+
+            self.logger.log_resource_use_start(
+                entity_id=self.identifier,
+                event="TRAUMA_treatment_begins",
+                resource_id=obtained_treatment_resource.id_attribute
+                )
+            # --------------------------------------------------------- #
 
             # record the waiting time for trauma
             self.wait_treat = self.env.now - start_wait
@@ -554,10 +619,24 @@ class TraumaPathway:
             self.treat_duration = self.args.treat_dist.sample()
             yield self.env.timeout(self.treat_duration)
 
+            # --- MARK: Vidigi modification - log resource use end --- #
+            self.logger.log_resource_use_end(
+                entity_id=self.identifier,
+                event="TRAUMA_treatment_ends",
+                resource_id=obtained_treatment_resource.id_attribute
+                )
+            # -------------------------------------------------------- #
+
             self.treatment_complete()
 
         # total time in system
         self.total_time = self.env.now - self.arrival
+
+        # --- MARK: Vidigi modification - log patient departure --- #
+        self.logger.log_departure(
+            entity_id=self.identifier
+            )
+        # --------------------------------------------------------- #
 
     def triage_complete(self) -> None:
         """
@@ -649,9 +728,30 @@ class NonTraumaPathway:
         # record the time of arrival and entered the triage queue
         self.arrival = self.env.now
 
+        # --- MARK: Vidigi modification - log patient arrival --- #
+        # --- Also log start of queueing
+        self.logger.log_arrival(
+            entity_id=self.identifier
+            )
+
+        self.logger.log_queue(
+            entity_id=self.identifier,
+            event="triage_wait_begins"
+        )
+        # ------------------------------------------------------- #
+
         # request sign-in/triage
         with self.triage.request() as req:
-            yield req
+            # --- MARK: Vidigi modification - return request object --- #
+            # --- Also log resource use start
+            obtained_triage_resource = yield req
+
+            self.logger.log_resource_use_start(
+                entity_id=self.identifier,
+                event="triage_begins",
+                resource_id=obtained_triage_resource.id_attribute
+                )
+            # --------------------------------------------------------- #
 
             # record the waiting time for triage
             self.wait_triage = self.env.now - self.arrival
@@ -666,12 +766,35 @@ class NonTraumaPathway:
                 f"waiting time was {self.wait_triage:.3f}"
             )
 
+            # --- MARK: Vidigi modification - log resource use end --- #
+            self.logger.log_resource_use_end(
+                entity_id=self.identifier,
+                event="triage_ends",
+                resource_id=obtained_triage_resource.id_attribute
+                )
+            # -------------------------------------------------------- #
+
         # record the time that entered the registration queue
         start_wait = self.env.now
+        # --- MARK: Vidigi modification - log start of queueing --- #
+        self.logger.log_queue(
+            entity_id=self.identifier,
+            event="MINORS_registration_wait_begins"
+        )
+        # ------------------------------------------------------- #
 
         # request registration clert
         with self.args.registration.request() as req:
-            yield req
+            # --- MARK: Vidigi modification - return request object --- #
+            # --- Also log resource use start
+            obtained_registration_resource = yield req
+
+            self.logger.log_resource_use_start(
+                entity_id=self.identifier,
+                event="MINORS_registration_begins",
+                resource_id=obtained_registration_resource.id_attribute
+                )
+            # --------------------------------------------------------- #
 
             # record the waiting time for registration
             self.wait_reg = self.env.now - start_wait
@@ -683,6 +806,14 @@ class NonTraumaPathway:
             self.reg_duration = self.args.reg_dist.sample()
             yield self.env.timeout(self.reg_duration)
 
+            # --- MARK: Vidigi modification - log resource use end --- #
+            self.logger.log_resource_use_end(
+                entity_id=self.identifier,
+                event="MINORS_registration_ends",
+                resource_id=obtained_registration_resource.id_attribute
+                )
+            # -------------------------------------------------------- #
+
             trace(
                 f"patient {self.identifier} registered at"
                 f"{self.env.now:.3f}; "
@@ -691,10 +822,25 @@ class NonTraumaPathway:
 
         # record the time that entered the evaluation queue
         start_wait = self.env.now
+        # --- MARK: Vidigi modification - log start of queueing --- #
+        self.logger.log_queue(
+            entity_id=self.identifier,
+            event="MINORS_examination_wait_begins"
+        )
+        # ------------------------------------------------------- #
 
         # request examination resource
         with self.args.exam.request() as req:
-            yield req
+            # --- MARK: Vidigi modification - return request object --- #
+            # --- Also log resource use start
+            obtained_examination_resource = yield req
+
+            self.logger.log_resource_use_start(
+                entity_id=self.identifier,
+                event="MINORS_examination_begins",
+                resource_id=obtained_examination_resource.id_attribute
+                )
+            # --------------------------------------------------------- #
 
             # record the waiting time for registration
             self.wait_exam = self.env.now - start_wait
@@ -706,6 +852,15 @@ class NonTraumaPathway:
             # sample examination duration.
             self.exam_duration = self.args.exam_dist.sample()
             yield self.env.timeout(self.exam_duration)
+
+            # --- MARK: Vidigi modification - log resource use end --- #
+            self.logger.log_resource_use_end(
+                entity_id=self.identifier,
+                event="MINORS_examination_ends",
+                resource_id=obtained_examination_resource.id_attribute
+                )
+            # -------------------------------------------------------- #
+
 
             trace(
                 f"patient {self.identifier} examination complete "
@@ -720,10 +875,25 @@ class NonTraumaPathway:
 
             # record the time that entered the treatment queue
             start_wait = self.env.now
+            # --- MARK: Vidigi modification - log start of queueing --- #
+            self.logger.log_queue(
+                entity_id=self.identifier,
+                event="MINORS_treatment_wait_begins"
+            )
+            # ------------------------------------------------------- #
 
             # request treatment cubicle
             with self.args.cubicle_1.request() as req:
-                yield req
+                 # --- MARK: Vidigi modification - return request object --- #
+                # --- Also log resource use start
+                obtained_treatment_resource = yield req
+
+                self.logger.log_resource_use_start(
+                    entity_id=self.identifier,
+                    event="MINORS_treatment_begins",
+                    resource_id=obtained_treatment_resource.id_attribute
+                    )
+                # --------------------------------------------------------- #
 
                 # record the waiting time for treatment
                 self.wait_treat = self.env.now - start_wait
@@ -736,6 +906,14 @@ class NonTraumaPathway:
                 self.treat_duration = self.args.nt_treat_dist.sample()
                 yield self.env.timeout(self.treat_duration)
 
+                # --- MARK: Vidigi modification - log resource use end --- #
+                self.logger.log_resource_use_end(
+                    entity_id=self.identifier,
+                    event="MINORS_treatment_ends",
+                    resource_id=obtained_treatment_resource.id_attribute
+                    )
+                # -------------------------------------------------------- #
+
                 trace(
                     f"patient {self.identifier} treatment complete "
                     f"at {self.env.now:.3f};"
@@ -744,6 +922,12 @@ class NonTraumaPathway:
 
         # total time in system
         self.total_time = self.env.now - self.arrival
+
+        # --- MARK: Vidigi modification - log patient departure --- #
+        self.logger.log_departure(
+            entity_id=self.identifier
+            )
+        # --------------------------------------------------------- #
 
 
 class TreatmentCentreModel:
