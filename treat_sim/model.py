@@ -792,23 +792,29 @@ class TreatmentCentreModel:
         6. trauma cubicles (2)
 
         """
+
+        # --- MARK - Vidigi modification: change resource instances to simpy stores --- #
+        # Note the use of num_resources parameter in place of capacity parameter
+
         # sign/in triage
-        self.args.triage = simpy.Resource(self.env, capacity=self.args.n_triage)
+        self.args.triage = VidigiStore(self.env, num_resources=self.args.n_triage)
 
         # registration
-        self.args.registration = simpy.Resource(self.env, capacity=self.args.n_reg)
+        self.args.registration = VidigiStore(self.env, num_resources=self.args.n_reg)
 
         # examination
-        self.args.exam = simpy.Resource(self.env, capacity=self.args.n_exam)
+        self.args.exam = VidigiStore(self.env, num_resources=self.args.n_exam)
 
         # trauma
-        self.args.trauma = simpy.Resource(self.env, capacity=self.args.n_trauma)
+        self.args.trauma = VidigiStore(self.env, num_resources=self.args.n_trauma)
 
         # non-trauma treatment
-        self.args.cubicle_1 = simpy.Resource(self.env, capacity=self.args.n_cubicles_1)
+        self.args.cubicle_1 = VidigiStore(self.env, num_resources=self.args.n_cubicles_1)
 
         # trauma treatment
-        self.args.cubicle_2 = simpy.Resource(self.env, capacity=self.args.n_cubicles_2)
+        self.args.cubicle_2 = VidigiStore(self.env, num_resources=self.args.n_cubicles_2)
+
+        # ------------------------------------------------------------------------------ #
 
     def run(
         self,
