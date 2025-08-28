@@ -1093,7 +1093,7 @@ class SimulationSummary:
     End of run result processing logic of the simulation model
     """
 
-    def __init__(self, model: TreatmentCentreModel) -> None:
+    def __init__(self, model: TreatmentCentreModel, save_logs: bool) -> None:
         """
         Constructor
 
@@ -1105,6 +1105,7 @@ class SimulationSummary:
         self.model = model
         self.args = model.args
         self.results = None
+        self.save_logs = save_logs
 
     def process_run_results(self) -> None:
         """
@@ -1299,6 +1300,10 @@ class SimulationSummary:
                     scenario: Scenario,
                     rc_period: Optional[float] = DEFAULT_RESULTS_COLLECTION_PERIOD,
                     debug_animation: Optional[bool] = False):
+
+        if self.save_logs:
+            self.model.logger.to_dataframe().to_csv("event_logs.csv")
+
         fig = animate_activity_log(
             event_log=self.model.logger.to_dataframe() ,
             event_position_df=EVENT_POSITION_DF,
@@ -1338,7 +1343,8 @@ def single_run(
     random_no_set: Optional[int] = DEFAULT_RNG_SET,
     # --- MARK - Vidigi modification: add parameter to determine if animation generated --- #
     animate_run: Optional[bool] = False,
-    debug_animation: Optional[bool] = False
+    debug_animation: Optional[bool] = False,
+    save_logs: Optional[bool] = False
     # ------------------------------------------------------------------------------------ #
 ) -> Union[pd.DataFrame, Tuple[pd.DataFrame, Any]]:
     """
@@ -1381,7 +1387,7 @@ def single_run(
     model.run(results_collection_period=rc_period)
 
     # run results
-    summary = SimulationSummary(model)
+    summary = SimulationSummary(model, save_logs=save_logs)
     summary_df = summary.summary_frame()
 
     # --- MARK - Vidigi modification: return animation if requested --- #
